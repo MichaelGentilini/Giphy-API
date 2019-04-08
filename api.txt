@@ -1,0 +1,5 @@
+APIKEY = Fwr04TmIc9MBh8A8LAoH3pl7772huS0Z
+
+Working
+
+https://api.giphy.com/v1/gifs/search?q=superhero&api_key=Fwr04TmIc9MBh8A8LAoH3pl7772huS0Z&limit=10

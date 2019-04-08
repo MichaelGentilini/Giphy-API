@@ -1,0 +1,55 @@
+/* * basic setup * */
+
+body {
+  background-image: url("../images/sky.jpg");
+  no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  margin-top: 20px;
+  font-size: 50px;
+}
+
+/* * starter buttons * */
+.empty-buttons {
+  margin: auto;
+  padding: 20px;
+  margin: 20px;
+}
+
+.btn-primary {
+  font-size: 20px;
+  margin: 10px;
+}
+
+/* * Add Superhero Section * */
+.search {
+  background: transparent;
+}
+
+.form-text {
+  font-size: 25px;
+  color: white;
+  margin-top: 40px;
+  padding: 20px;
+}
+
+
+/* * Giph display * */
+
+.rating {
+  /* color: white; */
+  margin: auto;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+img {
+  width: 100%;
+}
