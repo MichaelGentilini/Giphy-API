@@ -10,22 +10,27 @@ body {
 }
 
 h1 {
+  font-family: 'Bungee Shade', cursive;
   text-align: center;
   color: white;
   margin-top: 20px;
-  font-size: 50px;
+  font-size: 55px;
 }
 
 /* * starter buttons * */
 .empty-buttons {
   margin: auto;
-  padding: 20px;
+  /* padding: 10px; */
   margin: 20px;
 }
 
 .btn-primary {
-  font-size: 20px;
+  font-size: 25px;
   margin: 10px;
+}
+
+.btn-primary:nth-of-type(even) {
+  background: crimson;
 }
 
 /* * Add Superhero Section * */
