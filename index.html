@@ -7,14 +7,14 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
-  <link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet" />
   <link rel="stylesheet" href="./assets/css/style.css" />
   <title>Superhero Hero Search</title>
 </head>
 
 <body>
   <h1>Superhero Search</h1>
-
+  <!-- * Starter buttons are held here * -->
   <div class="container">
     <!-- ! beginning of the row -->
     <div class="row white">
@@ -37,34 +37,42 @@
         </form>
       </div>
     </div>
+  </div>
 
 
-    <div class="container">
-
-      <div class="hero-info">
-        <h1 id="name"></h1>
-
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row mt-2">
-        <div class="col-12 text-center">
-          <div class="images">
-
-          </div>
+  <div class="row">
+    <!-- * Add in some Wikipedia Information here * -->
+    <div class="container ">
+      <div class="card info">
+        <div id=" wikinfo">
+          <h2 id="name"></h2>
+          <p id="info"></p>
+          <p id="publisher"></p>
+          <p id="real-name"></p>
+          <p id="gender"></p>
+          <p id="base-city"></p>
+          <p id="height"></p>
+          <p id="aliases"></p>
+          <p id="link"></p>
+          <!-- </div> -->
         </div>
       </div>
     </div>
-
   </div>
-  >
+
+  <!-- * Images go here * -->
+  <div class="container">
+    <div class="row mt-2">
+      <div class="col-12 text-center">
+        <div class="images"></div>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="./assets/js/giphy2.js"></script>
-
+  <script src="./assets/js/giphy.js"></script>
 </body>
 
 </html>

@@ -27,7 +27,6 @@ h2 {
 /* * starter buttons * */
 .empty-buttons {
   margin: auto;
-  /* padding: 10px; */
   margin: 20px;
 }
 
@@ -70,7 +69,7 @@ img {
 .info {
 
   width: 100%;
-  padding-left: 50px;
+  padding: 0 25px;
   visibility: hidden;
   background: lightyellow;
   margin: auto;
@@ -81,22 +80,4 @@ img {
 #link {
   text-align: center;
   font-size: 20px;
-}
-
-
-/* * Superhero API Stuff * */
-
-.superApi {
-  visibility: hidden;
-  margin-top: 25px;
-}
-
-#superinfo {
-
-  width: 100%;
-  padding-left: 50px;
-  /* visibility: hidden; */
-  background: lightblue;
-  margin-top: 25px;
-  margin-bottom: 25px;
 }
