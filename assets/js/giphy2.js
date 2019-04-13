@@ -17,14 +17,13 @@ $("document").ready(function () {
     "batman",
     "iron man",
     "daredevil",
+    "green lantern",
     "iron fist",
     "cat woman"
   ];
-  // var currentSuperHero = "";
-  var newSuperHero = [];
+
 
   var startBtn = function () {
-
     $(".empty-buttons").empty();
 
     //! Dynamic superhero BUTTONS to start
@@ -49,10 +48,11 @@ $("document").ready(function () {
   $("#submitNewHero").on("click", function (event) {
     event.preventDefault();
 
-    var newHero = $("#newHero").val().trim();
+    var newHero = $("#newHero")
+      .val()
+      .trim();
     superheroes.push(newHero);
     startBtn();
-    $("#newHero").val(' ');
   });
 
   // * API call which creates the GIFs based on the currentSuperHero *
@@ -87,16 +87,51 @@ $("document").ready(function () {
         p.addClass("rating");
 
         var superImage = $("<img>");
+        superImage.addClass("heroImage");
         superImage.attr("src", results[i].images.fixed_width.url);
 
-        // append image and rating to the column, div, and container
+        // * append image and rating to the column, div, and container
         colHolder.append(p, superImage);
         superDiv.append(colHolder);
         $(".images").prepend(superDiv);
-
       }
     });
   }
+
+  // * API call of Wikipedia using currentSuperHero *\
+
+  function getWiki() {
+
+    var wikiURL =
+      "https://en.wikipedia.org/w/api.php?action=opensearch&search=" +
+      currentSuperHero + "comic" +
+      "&format=json&callback=?";
+
+    console.log(wikiURL);
+    $.ajax({
+        url: wikiURL,
+        method: "GET",
+        dataType: "json",
+        async: false
+      })
+      .done(function (data) {
+        console.log(wikiURL);
+        var name = data[1][0];
+        var info = data[2][0];
+        var link = data[3][0];
+
+        console.log("wiki" + data);
+        $(".info").css("visibility", "visible");
+        $("#name").text(name);
+        $("#info").html(info);
+        $("#link").html("<a href =" + link + ">" + link + "</a>");
+      })
+      .fail(function () {
+        console.log("couldn't find anything");
+      });
+  }
+
+  // * API call of SuperHeroAPI *\
 
   function createhero() {
     var heroURL =
@@ -105,25 +140,44 @@ $("document").ready(function () {
     $.ajax({
       url: heroURL,
       method: "GET",
-      // type: "json"
-    }).then(function (response) {
+    }).done(function (response) {
+
       console.log(response);
 
-      console.log("publisher: " + response.results[0].biography.publisser);
-      console.log("aliases: " + response.results[0].biography.aliases);
-      console.log("base: " + response.results[0].work.base);
-      console.log("gender: " + response.results[0].appearance.gender);
 
-      console.log("height: " + response.results[0].appearance.height);
+      if (response.response == "success") {
+        // $(".superinfo").empty();
+        var newResponse = response.results[0];
+
+        if ((currentSuperHero == "superman") || (currentSuperHero == "thor")) {
+          newResponse = response.results[1];
+        }
+
+        var publisher = response.results[0].biography.publisher;
+        var fullName = newResponse.biography["full-name"];
+        var aliases = newResponse.biography.aliases;
+        var base = newResponse.work.base;
+        var gender = newResponse.appearance.gender;
+        var height = newResponse.appearance.height;
 
 
-      // ? --- How can I get rid of the spaces by prettier?
-      console.log("place of birth: " + response.results[0].biography["place-of-birth"]);
+        // $(".superAPI").css("visibility", "visible");
+        $("#real-name").html("real name: " + fullName);
+        $("#publisher").html("Publisher: " + publisher);
+        $("#gender").html("Gender: " + gender);
+        $("#height").html("Height: " + height);
+        $("#base-city").html("Base City: " + base);
+        $("#aliases").html("Aliases: " + aliases);
 
+
+      } else if (response.response == "error") {
+        $(".superinfo").empty();
+        $(".superAPI").css("visibility", "hidden");
+      }
     });
   }
-
   startBtn();
+  $(document).on("click", ".heroButton", getWiki);
   $(document).on("click", ".heroButton", createGif);
   $(document).on("click", ".heroButton", createhero);
 });
