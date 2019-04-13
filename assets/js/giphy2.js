@@ -12,12 +12,11 @@ $("document").ready(function () {
     "green arrow",
     "wolverine",
     "hulk",
-    "spider man",
+    "spider-man",
     "aquaman",
     "batman",
     "iron man",
     "daredevil",
-    "green lantern",
     "iron fist",
     "cat woman"
   ];
@@ -53,6 +52,7 @@ $("document").ready(function () {
     var newHero = $("#newHero").val().trim();
     superheroes.push(newHero);
     startBtn();
+    $("#newHero").val(' ');
   });
 
   // * API call which creates the GIFs based on the currentSuperHero *
@@ -97,6 +97,33 @@ $("document").ready(function () {
       }
     });
   }
+
+  function createhero() {
+    var heroURL =
+      "http://www.superheroapi.com/api.php/517817718750245/search/" + currentSuperHero;
+
+    $.ajax({
+      url: heroURL,
+      method: "GET",
+      // type: "json"
+    }).then(function (response) {
+      console.log(response);
+
+      console.log("publisher: " + response.results[0].biography.publisser);
+      console.log("aliases: " + response.results[0].biography.aliases);
+      console.log("base: " + response.results[0].work.base);
+      console.log("gender: " + response.results[0].appearance.gender);
+
+      console.log("height: " + response.results[0].appearance.height);
+
+
+      // ? --- How can I get rid of the spaces by prettier?
+      console.log("place of birth: " + response.results[0].biography["place-of-birth"]);
+
+    });
+  }
+
   startBtn();
   $(document).on("click", ".heroButton", createGif);
+  $(document).on("click", ".heroButton", createhero);
 });
