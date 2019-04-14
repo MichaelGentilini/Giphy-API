@@ -153,7 +153,7 @@ $("document").ready(function () {
 
   function createhero() {
     var heroURL =
-      "http://www.superheroapi.com/api.php/517817718750245/search/" + currentSuperHero;
+      "https://www.superheroapi.com/api.php/517817718750245/search/" + currentSuperHero;
 
     $.ajax({
       url: heroURL,
