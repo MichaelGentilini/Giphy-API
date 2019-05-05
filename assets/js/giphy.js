@@ -22,7 +22,6 @@ $("document").ready(function () {
     "marvel girl"
   ];
 
-
   var startBtn = function () {
     $(".empty-buttons").empty();
 
@@ -48,19 +47,19 @@ $("document").ready(function () {
   // * function for additional buttons button name *
   $("#submitNewHero").on("click", function (event) {
     event.preventDefault();
-
-    var newHero = $("#newHero")
-      .val()
-      .trim();
-    superheroes.push(newHero);
-    startBtn();
+    if ($("#newHero")
+      .val()) {
+      var newHero = $("#newHero")
+        .val()
+        .trim();
+      superheroes.push(newHero);
+      startBtn();
+    }
   });
 
   // * API call which creates the GIFs based on the currentSuperHero *
 
   function createGif() {
-
-    ;
     var queryURL =
       "https://api.giphy.com/v1/gifs/search?q=" +
       currentSuperHero +
@@ -77,7 +76,6 @@ $("document").ready(function () {
       var superDiv = $("<div>");
       superDiv.addClass("row");
       for (var i = 0; i < results.length; i++) {
-
         $(".images").empty();
 
         // ! create a div with a column for the images .. you can change the size of the images by manipulating the class
@@ -95,7 +93,6 @@ $("document").ready(function () {
         superImage.attr("data-still", results[i].images.fixed_width_still.url);
         superImage.attr("data-animate", results[i].images.fixed_width.url);
         superImage.attr("data-state", "animate");
-
 
         // * append image and rating to the column, div, and container
         colHolder.append(p, superImage);
@@ -122,10 +119,10 @@ $("document").ready(function () {
   // * API call of Wikipedia using currentSuperHero *\
 
   function getWiki() {
-
     var wikiURL =
       "https://en.wikipedia.org/w/api.php?action=opensearch&search=" +
-      currentSuperHero + "comic" +
+      currentSuperHero +
+      "comic" +
       "&format=json&callback=?";
 
     $.ajax({
@@ -153,16 +150,21 @@ $("document").ready(function () {
 
   function createhero() {
     var heroURL =
-      "https://www.superheroapi.com/api.php/517817718750245/search/" + currentSuperHero;
+      "https://www.superheroapi.com/api.php/517817718750245/search/" +
+      currentSuperHero;
 
     $.ajax({
       url: heroURL,
-      method: "GET",
+      method: "GET"
     }).done(function (response) {
       if (response.response == "success") {
         var newResponse = response.results[0];
 
-        if ((currentSuperHero == "superman") || (currentSuperHero == "thor") || (currentSuperHero == "batman")) {
+        if (
+          currentSuperHero == "superman" ||
+          currentSuperHero == "thor" ||
+          currentSuperHero == "batman"
+        ) {
           newResponse = response.results[1];
         }
 
@@ -179,9 +181,10 @@ $("document").ready(function () {
         $("#height").html("Height: " + height);
         $("#base-city").html("Base City: " + base);
         $("#aliases").html("Aliases: " + aliases);
-
       } else if (response.response == "error") {
-        $("#real-name").html("<h4>We could not find this name in the superhero database. But, here is what we found in Wikipedia </h4>");
+        $("#real-name").html(
+          "<h4>We could not find this name in the superhero database. But, here is what we found in Wikipedia </h4>"
+        );
       }
     });
   }
@@ -191,5 +194,4 @@ $("document").ready(function () {
   $(document).on("click", ".heroButton", getWiki);
   $(document).on("click", ".heroButton", createGif);
   $(document).on("click", ".heroButton", createhero);
-
 });
